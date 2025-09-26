@@ -42,79 +42,149 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-background">
-      <form onSubmit={handleSubmit} className="bg-primary p-6 rounded-lg shadow-md w-full max-w-md">
-        <h2 className="text-xl mb-4 text-white">Register</h2>
-        <input
-          type="text"
-          value={data.name}
-          onChange={(e) => setData({ ...data, name: e.target.value })}
-          placeholder="Name"
-          className="w-full p-2 mb-4 border border-primary rounded bg-background text-white"
-          required
-        />
-        <input
-          type="email"
-          value={data.email}
-          onChange={(e) => setData({ ...data, email: e.target.value })}
-          placeholder="Email"
-          className="w-full p-2 mb-4 border border-primary rounded bg-background text-white"
-          required
-        />
-        <input
-          type="password"
-          value={data.password}
-          onChange={(e) => setData({ ...data, password: e.target.value })}
-          placeholder="Password"
-          className="w-full p-2 mb-4 border border-primary rounded bg-background text-white"
-          required
-        />
-        <select
-          value={data.role}
-          onChange={(e) => setData({ ...data, role: e.target.value as 'admin' | 'supervisor' | 'student' })}
-          className="w-full p-2 mb-4 border border-primary rounded bg-background text-white"
-          required
-        >
-          <option value="">Select Role</option>
-          <option value="admin">Admin</option>
-          <option value="supervisor">Supervisor</option>
-          <option value="student">Student</option>
-        </select>
-        <input
-          type="text"
-          value={data.department}
-          onChange={(e) => setData({ ...data, department: e.target.value })}
-          placeholder="Department"
-          className="w-full p-2 mb-4 border border-primary rounded bg-background text-white"
-          required
-        />
-        {data.role === 'student' && (
-          <input
-            type="text"
-            value={data.matricNumber}
-            onChange={(e) => setData({ ...data, matricNumber: e.target.value })}
-            placeholder="Matric Number"
-            className="w-full p-2 mb-4 border border-primary rounded bg-background text-white"
-            required
-          />
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-background via-gray-900 to-primary p-4">
+      <div className="w-full max-w-md">
+        <div className="bg-primary/80 backdrop-blur-sm p-8 rounded-2xl shadow-2xl border border-primary/20">
+          <div className="text-center mb-8">
+            <div className="w-16 h-16 bg-gradient-to-r from-cta to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <span className="text-white text-2xl">📝</span>
+            </div>
+            <h1 className="text-3xl font-bold text-white mb-2">Create Account</h1>
+            <p className="text-gray-300">Join ProjectHub today</p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
+              <input
+                type="text"
+                value={data.name}
+                onChange={(e) => setData({ ...data, name: e.target.value })}
+                placeholder="Enter your full name"
+                className="w-full p-3 border border-gray-600 rounded-lg bg-background/50 text-white placeholder-gray-400 focus:ring-2 focus:ring-cta focus:border-transparent transition-all"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
+              <input
+                type="email"
+                value={data.email}
+                onChange={(e) => setData({ ...data, email: e.target.value })}
+                placeholder="Enter your email"
+                className="w-full p-3 border border-gray-600 rounded-lg bg-background/50 text-white placeholder-gray-400 focus:ring-2 focus:ring-cta focus:border-transparent transition-all"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">Password</label>
+              <input
+                type="password"
+                value={data.password}
+                onChange={(e) => setData({ ...data, password: e.target.value })}
+                placeholder="Create a password"
+                className="w-full p-3 border border-gray-600 rounded-lg bg-background/50 text-white placeholder-gray-400 focus:ring-2 focus:ring-cta focus:border-transparent transition-all"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">Role</label>
+              <select
+                value={data.role}
+                onChange={(e) => setData({ ...data, role: e.target.value as 'admin' | 'supervisor' | 'student' })}
+                className="w-full p-3 border border-gray-600 rounded-lg bg-background/50 text-white focus:ring-2 focus:ring-cta focus:border-transparent transition-all"
+                required
+              >
+                <option value="">Select your role</option>
+                <option value="admin">🛠️ Administrator</option>
+                <option value="supervisor">👨‍🏫 Supervisor</option>
+                <option value="student">👨‍🎓 Student</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">Department</label>
+              <input
+                type="text"
+                value={data.department}
+                onChange={(e) => setData({ ...data, department: e.target.value })}
+                placeholder="Enter your department"
+                className="w-full p-3 border border-gray-600 rounded-lg bg-background/50 text-white placeholder-gray-400 focus:ring-2 focus:ring-cta focus:border-transparent transition-all"
+                required
+              />
+            </div>
+
+            {data.role === 'student' && (
+              <div className="animate-fadeIn">
+                <label className="block text-sm font-medium text-gray-300 mb-2">Matriculation Number</label>
+                <input
+                  type="text"
+                  value={data.matricNumber}
+                  onChange={(e) => setData({ ...data, matricNumber: e.target.value })}
+                  placeholder="e.g., 20/CS/001"
+                  className="w-full p-3 border border-gray-600 rounded-lg bg-background/50 text-white placeholder-gray-400 focus:ring-2 focus:ring-cta focus:border-transparent transition-all"
+                  required
+                />
+              </div>
+            )}
+
+            {data.role === 'supervisor' && (
+              <div className="animate-fadeIn">
+                <label className="block text-sm font-medium text-gray-300 mb-2">Specialization</label>
+                <input
+                  type="text"
+                  value={data.specialization}
+                  onChange={(e) => setData({ ...data, specialization: e.target.value })}
+                  placeholder="e.g., Artificial Intelligence"
+                  className="w-full p-3 border border-gray-600 rounded-lg bg-background/50 text-white placeholder-gray-400 focus:ring-2 focus:ring-cta focus:border-transparent transition-all"
+                  required
+                />
+              </div>
+            )}
+
+            <button 
+              type="submit" 
+              className="w-full bg-gradient-to-r from-cta to-blue-600 hover:from-cta-hover hover:to-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-all transform hover:scale-105"
+            >
+              <div className="flex items-center justify-center">
+                <span className="mr-2">🚀</span>
+                Create Account
+              </div>
+            </button>
+          </form>
+
+          <div className="mt-8 text-center">
+            <p className="text-gray-400">
+              Already have an account?{' '}
+              <Link href="/login" className="text-cta hover:text-cta-hover font-semibold transition-colors">
+                Sign in
+              </Link>
+            </p>
+          </div>
+        </div>
+
+        {data.role && (
+          <div className="mt-6 bg-primary/60 backdrop-blur-sm p-4 rounded-xl border border-primary/20">
+            <div className="flex items-center mb-2">
+              <span className="mr-2">
+                {data.role === 'admin' ? '🛠️' : data.role === 'supervisor' ? '👨‍🏫' : '👨‍🎓'}
+              </span>
+              <h3 className="text-sm font-semibold text-white">
+                {data.role === 'admin' ? 'Administrator' : 
+                 data.role === 'supervisor' ? 'Supervisor' : 'Student'} Role
+              </h3>
+            </div>
+            <p className="text-xs text-gray-300">
+              {data.role === 'admin' ? 'Manage users, projects, and system settings' :
+               data.role === 'supervisor' ? 'Create projects, monitor students, and provide feedback' :
+               'Join projects, submit progress, and receive guidance'}
+            </p>
+          </div>
         )}
-        {data.role === 'supervisor' && (
-          <input
-            type="text"
-            value={data.specialization}
-            onChange={(e) => setData({ ...data, specialization: e.target.value })}
-            placeholder="Specialization"
-            className="w-full p-2 mb-4 border border-primary rounded bg-background text-white"
-            required
-          />
-        )}
-        <button type="submit" className="bg-cta hover:bg-cta-hover text-white px-4 py-2 rounded w-full">
-          Register
-        </button>
-        <p className="mt-4 text-center">
-          <Link href="/login" className="text-cta hover:underline">Login</Link>
-        </p>
-      </form>
+      </div>
     </div>
   );
 }
